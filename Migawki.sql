@@ -60,7 +60,7 @@ JOIN wykladowcy@dblinkFilia w ON k.wykladowca_id = w.wykladowca_id;
 zad 8
 
 CREATE OR REPLACE VIEW kursy_Siedziba_i_Filia_V AS
--- Dane pobierane na żywo z Siedziby (Bydgoszcz)
+
 SELECT 
     r.nazwa AS nazwa_kursu, 
     w.imie, 
@@ -74,7 +74,7 @@ JOIN wykladowcy w ON k.wykladowca_id = w.wykladowca_id
 
 UNION ALL
 
--- Dane pobierane z Twojej migawki (Filia - Szczecin)
+
 SELECT 
     nazwa_kursu, 
     imie, 
@@ -87,11 +87,11 @@ FROM REP_kursy;
 zad 9
 
 SELECT 
-    mview_name,            -- Nazwa migawki 
-    last_refresh_date,     -- Kiedy ostatnio zaciągnęła dane [cite: 154]
-    next_refresh_date,     -- Kiedy planuje następny skok po dane [cite: 154]
-    refresh_method,        -- Czy robi to w trybie COMPLETE czy FAST [cite: 154]
-    refresh_mode           -- Czy odświeża się ON DEMAND czy inaczej [cite: 154]
+    mview_name,             
+    last_refresh_date,     
+    next_refresh_date,     
+    refresh_method,        
+    refresh_mode          
 FROM USER_MVIEWS;
 
 
