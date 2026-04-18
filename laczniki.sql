@@ -47,7 +47,7 @@ GROUP BY r.nazwa, w.imie, w.nazwisko
 
 UNION ALL
 
--- Kursy z Filii (Szczecin)
+
 SELECT 
     r.nazwa, 
     w.imie || ' ' || w.nazwisko, 
@@ -63,7 +63,7 @@ zad 8
 
 SELECT SUM(przychody_z_kursu) AS przychod_calkowity
 FROM (
-    -- Przychód z Siedziby (Bydgoszcz)
+    
     SELECT COUNT(u.kursant_id) * r.cena AS przychody_z_kursu
     FROM kursySiedziba k
     JOIN rodzajeSiedziba r ON k.rodzaj_id = r.rodzaj_id
@@ -73,7 +73,7 @@ FROM (
 
     UNION ALL
 
-    -- Przychód z Filii (Szczecin)
+   
     SELECT COUNT(u.kursant_id) * r.cena
     FROM kursyFilia k
     JOIN rodzajeFilia r ON k.rodzaj_id = r.rodzaj_id
@@ -87,7 +87,7 @@ zad  9
 
 SELECT SUM(koszt_kursu) AS koszty_calkowite
 FROM (
-    -- Koszty w Siedzibie (Bydgoszcz)
+    
     SELECT r.godz * w.stawka AS koszt_kursu
     FROM kursySiedziba k
     JOIN rodzajeSiedziba r ON k.rodzaj_id = r.rodzaj_id
@@ -95,7 +95,7 @@ FROM (
 
     UNION ALL
 
-    -- Koszty w Filii (Szczecin)
+    
     SELECT r.godz * w.stawka
     FROM kursyFilia k
     JOIN rodzajeFilia r ON k.rodzaj_id = r.rodzaj_id
@@ -111,7 +111,7 @@ SELECT
     koszt,
     (przychod - koszt) AS zysk_strata
 FROM (
-    -- Analiza dla Siedziby (Bydgoszcz)
+    
     SELECT 
         'SIEDZIBA' AS lokalizacja,
         r.nazwa AS nazwa_kursu,
@@ -123,7 +123,7 @@ FROM (
 
     UNION ALL
 
-    -- Analiza dla Filii (Szczecin)
+   
     SELECT 
         'FILIA' AS lokalizacja,
         r.nazwa,
@@ -141,7 +141,7 @@ zad 11
 
 SELECT SUM(przychod - koszt) AS laczny_zysk_ogolem
 FROM (
-    -- Wyniki finansowe z Siedziby (Bydgoszcz)
+    
     SELECT 
         (SELECT COUNT(*) FROM umowy u 
          WHERE u.kurs_id = k.kurs_id AND u.miasto = 'BYDGOSZCZ') * r.cena AS przychod,
@@ -152,7 +152,7 @@ FROM (
 
     UNION ALL
 
-    -- Wyniki finansowe z Filii (Szczecin)
+   
     SELECT 
         (SELECT COUNT(*) FROM umowy u 
          WHERE u.kurs_id = k.kurs_id AND u.miasto = 'SZCZECIN') * r.cena AS przychod,
