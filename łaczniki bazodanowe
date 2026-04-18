@@ -1,0 +1,31 @@
+zad 5
+
+Baza 11a
+CREATE SYNONYM wykladowcySiedziba FOR wykladowcy;
+CREATE SYNONYM kursanciSiedziba FOR kursanci;
+CREATE SYNONYM rodzajeSiedziba FOR rodzaje;
+CREATE SYNONYM kursySiedziba FOR kursy;
+
+Baza 12b
+
+CREATE SYNONYM wykladowcyFilia FOR wykladowcy@dblinkFilia;
+CREATE SYNONYM kursanciFilia FOR kursanci@dblinkFilia;
+CREATE SYNONYM rodzajeFilia FOR rodzaje@dblinkFilia;
+CREATE SYNONYM kursyFilia FOR kursy@dblinkFilia;
+
+
+zad 6
+
+Widok kursantow
+
+CREATE OR REPLACE VIEW kursanciAll AS
+SELECT imie, nazwisko FROM kursanciSiedziba
+UNION
+SELECT imie, nazwisko FROM kursanciFilia;
+
+Widok Wykladowcow 
+
+CREATE OR REPLACE VIEW wykladowcyAll AS
+SELECT imie, nazwisko FROM wykladowcySiedziba
+UNION
+SELECT imie, nazwisko FROM wykladowcyFilia;
